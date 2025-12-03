@@ -4,6 +4,7 @@ const cors = require('cors');
 
 app.use(express.json());
 app.use(cors());
+
 const reminderRouter = require('./src/routes/reminderRouter');
 const userRouter = require('./src/routes/userRouter');
 
@@ -12,11 +13,11 @@ app.get('/', (req, res) => {
 });
 
 app.use('/lembretes', reminderRouter);
-app.use('/users', userRouter)
+app.use('/users', userRouter);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is running on http://10.113.12.38:${PORT}`);
 });
 
 module.exports = app;
