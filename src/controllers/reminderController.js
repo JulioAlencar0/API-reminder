@@ -9,6 +9,22 @@ const getLembretes = async (req, res) => {
     }
 }
 
+const getLembretesByUserId = async (req, res) => {
+    const { user_id } = req.params;
+
+    try {
+        const result = await pool.query(
+            'SELECT * FROM lembretes WHERE user_id = $1',
+            [user_id]
+        );
+        res.status(200).json(result.rows);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar lembretes' });
+    }
+}
+
+
+
 const createLembrete = async (req, res) => {
     const {nome_remedio, horario, recorrencia, tomar_agora, user_id} = req.body;
     try {
@@ -43,4 +59,4 @@ const deleteLembrete = async (req, res) => {
         }
     }
 
-module.exports = {getLembretes, createLembrete, updateLembrete, deleteLembrete}
+module.exports = {getLembretes, getLembretesByUserId, createLembrete, updateLembrete, deleteLembrete}

@@ -17,7 +17,7 @@ app.use('/users', userRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server is running on http://10.113.12.38:${PORT}`);
+    console.log(`Server is running on http://10.0.0.11:${PORT}`);
 });
 
 module.exports = app;
